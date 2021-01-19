@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--
+        The generatorConfiguration element is the root element for configurations.
+        -->
+        <!ELEMENT generatorConfiguration (tables?, templates?,info?,dataSource?,types?,xmlTypes? )>
+
+        <!--
+        info
+        -->
+        <!ELEMENT info EMPTY>
+        <!ATTLIST info
+                author CDATA #IMPLIED
+                remark CDATA #IMPLIED
+                >
+
+        <!--
+        dataSource
+        -->
+        <!ELEMENT dataSource EMPTY>
+        <!ATTLIST dataSource
+                dialect CDATA #REQUIRED
+                url CDATA #REQUIRED
+                db CDATA #REQUIRED
+                user CDATA #REQUIRED
+                password CDATA #REQUIRED
+                driverClassName CDATA #REQUIRED
+                >
+
+        <!--
+                compareDataSource
+                -->
+        <!ELEMENT compareDataSource EMPTY>
+        <!ATTLIST compareDataSource
+                dialect CDATA #REQUIRED
+                url CDATA #REQUIRED
+                db CDATA #REQUIRED
+                user CDATA #REQUIRED
+                password CDATA #REQUIRED
+                driverClassName CDATA #REQUIRED
+                >
+
+        <!--
+        tables
+        -->
+        <!ELEMENT tables (table*)>
+
+        <!--
+        table
+        -->
+        <!ELEMENT table EMPTY>
+        <!ATTLIST table
+                name CDATA #REQUIRED
+                prefix CDATA #IMPLIED
+                module CDATA #REQUIRED
+                recordable CDATA #IMPLIED
+                overwrite CDATA  #IMPLIED
+                requestBasePath CDATA  #IMPLIED
+                methods CDATA  #IMPLIED
+                >
+
+        <!--
+        templates
+        -->
+        <!ELEMENT templates (group*)>
+        <!ATTLIST templates
+                targetGroupName CDATA #REQUIRED
+                path CDATA #REQUIRED
+                >
+        <!--
+          group
+         -->
+        <!ELEMENT group (template*)>
+        <!ATTLIST group
+                name CDATA #REQUIRED
+                canBeDeleted (true|false) "false"
+                >
+
+        <!--
+        template
+        -->
+        <!ELEMENT template EMPTY>
+        <!ATTLIST template
+                name CDATA #REQUIRED
+                rootPath CDATA
+                path CDATA
+                absolutePath CDATA
+                overwrite CDATA  #IMPLIED
+                outputMode (file|console) "file"
+                >
+
+        <!--
+        types
+        -->
+        <!ELEMENT types (type*)>
+        <!ATTLIST types
+                >
+
+        <!--
+        type
+        -->
+        <!ELEMENT type EMPTY>
+        <!ATTLIST type
+                jdbcType CDATA #REQUIRED
+                javaType CDATA #REQUIRED>
+
+
+        <!--
+        crudTypes
+        -->
+        <!ELEMENT xmlTypes (xmlType*)>
+        <!ATTLIST xmlTypes
+                >
+        <!--
+        type
+        -->
+        <!ELEMENT xmlType EMPTY>
+        <!ATTLIST xmlType
+                jdbcType CDATA #REQUIRED
+                xmlType CDATA #REQUIRED>
+        <!--
+        property
+        -->
+        <!ELEMENT property EMPTY>
+        <!ATTLIST property
+                name CDATA #REQUIRED
+                value CDATA #REQUIRED>
