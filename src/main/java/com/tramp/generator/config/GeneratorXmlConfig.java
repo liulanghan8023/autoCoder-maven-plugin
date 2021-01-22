@@ -23,6 +23,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static com.tramp.generator.common.CodeCreator.PATH_SP;
+
 /**
  * @author chenjm1
  * @since 2017/10/25
@@ -88,7 +90,7 @@ public class GeneratorXmlConfig {
      * 初始化
      */
     public static void init(String configPath) {
-        sysBasePath = System.getProperty("user.dir") + "\\";
+        sysBasePath = System.getProperty("user.dir") + PATH_SP;
         //创建SAXReader对象
         SAXReader reader = new SAXReader();
         try {

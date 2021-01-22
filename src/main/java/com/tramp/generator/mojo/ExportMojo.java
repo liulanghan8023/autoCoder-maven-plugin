@@ -22,6 +22,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
 
+import static com.tramp.generator.common.CodeCreator.PATH_SP;
+
 /**
  * @author chenjm1
  * @since 2019/2/25
@@ -72,7 +74,7 @@ public class ExportMojo extends AbstractMojo {
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            File file = new File(generatorTemplate.getAbsolutePath() + "\\" + name);
+            File file = new File(generatorTemplate.getAbsolutePath() + PATH_SP + name);
             FileWriter out = new FileWriter(file);
             template.process(context, out);
         }

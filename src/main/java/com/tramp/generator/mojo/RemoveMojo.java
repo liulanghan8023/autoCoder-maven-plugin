@@ -20,6 +20,8 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.List;
 
+import static com.tramp.generator.common.CodeCreator.PATH_SP;
+
 /**
  * @author chenjm1
  * @since 2018/11/21
@@ -62,8 +64,8 @@ public class RemoveMojo extends AbstractMojo {
                 }
                 String suffix = template.getName().replace(".ftl", "").replace(CodeCreator.PLH, "");
                 String storePath;
-                String basePath = System.getProperty("user.dir") + "\\src\\main\\";
-                String path = template.getPath().replace(".", "\\").replace("${module}", table.getModule());
+                String basePath = System.getProperty("user.dir") + PATH_SP + PATH_SP;
+                String path = template.getPath().replace(".", PATH_SP).replace("${module}", table.getModule());
                 String finalPath = basePath + path;
                 if (StringUtils.isBlank(table.getPrefix())) {
                     storePath = finalPath + "/" + FreeMarkerUtil.upperName(table.getName()) + suffix;

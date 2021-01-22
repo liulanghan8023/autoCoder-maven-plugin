@@ -24,7 +24,8 @@ public class CodeCreator {
     private static Logger log = LoggerFactory.getLogger(CodeCreator.class);
     public static final String PLH = "#";//占位符
     //public static final String PLH="plh";//占位符
-
+    // TODO: 2021/1/22 win/mac 兼容处理
+    public final static String PATH_SP="/";
     /**
      * 生成代码
      *
@@ -48,11 +49,11 @@ public class CodeCreator {
                 generatorEnum(dbTable, generatorTemplate);
                 continue;
             }
-            String path = generatorTemplate.getPath().replace(".", "\\").replace("${module}", dbTable.getModule());
+            String path = generatorTemplate.getPath().replace(".", PATH_SP).replace("${module}", dbTable.getModule());
             String suffix = templateName.replace(".ftl", "").replace(PLH, "");
             try {
                // String basePath = System.getProperty("user.dir") + "\\src\\main\\";
-                String basePath = System.getProperty("user.dir")+"\\";
+                String basePath = System.getProperty("user.dir")+PATH_SP;
                 String storePath;
                 String finalPath = basePath + path;
                 if (StringUtils.isBlank(dbTable.getPrefix())) {
@@ -99,12 +100,11 @@ public class CodeCreator {
         Template template;
         for (DBColumnEnum dbColumnEnum : columnEnumList) {
             String templateName = generatorTemplate.getName();
-            String path = generatorTemplate.getPath().replace(".", "\\").replace("${module}", dbTable.getModule());
+            String path = generatorTemplate.getPath().replace(".", PATH_SP).replace("${module}", dbTable.getModule());
             String suffix = templateName.replace(".ftl", "");
             String tableEnumName = FreeMarkerUtil.upperName(dbTable.getName().replace(dbTable.getPrefix(), "")) + FreeMarkerUtil.initialStrToUpper(FreeMarkerUtil.upperName(dbColumnEnum.getColumnName().toLowerCase()));
             try {
-                //String basePath = System.getProperty("user.dir") + "\\src\\main\\";
-                String basePath = System.getProperty("user.dir")+"\\";
+                String basePath = System.getProperty("user.dir");
                 String storePath;
                 String finalPath = basePath + path;
                 storePath = finalPath + "/" + tableEnumName + suffix;
