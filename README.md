@@ -4,10 +4,47 @@
 
 ## 功能
 1.快速代码生成(支持自定义目标,分组等)  
-2.快速代码删除  
-3.数据库导出到word(其实不止word)  
-4.数据库差异对比（比较出字段的类型/长度等差异,保持各个环境一致）   
-5.待增加...  
+2.支持枚举类生成  
+要求数据表字段规范注释, 如:
+---
+```
+status 注释为： "状态,[AUTHING:审核中,REJECT:审核不通过,AUTHED:审核通过]"
+则生成代码如下(具体看自己的模板)：
+
+public enum AppStatusEnum {
+
+     AUTHING("AUTHING", "审核中"), REJECT("REJECT", "审核不通过"), AUTHED("AUTHED", "审核通过");
+
+    AppStatusEnum(String code, String display) {
+        this.code = code;
+        this.display = display;
+    }
+
+    private String code;
+    private String display;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(String display) {
+        this.display = display;
+    }
+}
+```
+---
+3.快速代码删除  
+4.数据库导出到word(其实不止word)  
+5.数据库差异对比（比较出字段的类型/长度等差异,保持各个环境一致）   
+6.待增加...  
 
 ## 安装
 1.拉下源码后，使用maven install到仓库  
