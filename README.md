@@ -26,10 +26,10 @@
             </plugin>
         </plugins>
     </build>
-<configPath>${basedir}/mbg/generatorConfig.xml</configPath>中的路径就是你实际配置文件的路径，
-后续主要就是对配置文件进行相关配置
 ```
 ---
+其中${basedir}/mbg/generatorConfig.xml 中的路径就是你实际配置文件的路径，后续主要就是对配置文件进行相关配置
+
 ### 进行配置
 见使用说明
 
