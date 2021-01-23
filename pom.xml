@@ -6,7 +6,10 @@
     <groupId>com.tramp</groupId>
     <artifactId>autoCoder-maven-plugin</artifactId>
     <version>1.0.4</version>
-    <packaging>maven-plugin</packaging>
+    <modules>
+        <module>demo</module>
+    </modules>
+    <packaging>pom</packaging>
     <name>autoCoder</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//W3C//DTD HTML 4.01//en"
+        "https://github.com/liulanghan8023/autoCoder-maven-plugin/blob/main/src/main/resources/tramp-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <tables>
+        <!--数据库表，name:数据库中的表名， prefix：表前缀,声明后不会出现在文件名中 module:模块 overwrite:是否覆盖代码，默认false-->
+        <table name="ceb_app" module="basic" overwrite="true" prefix="ceb_"/>
+    </tables>
+
+    <templates path="mbg/templates" targetGroupName="mybatis">
+        <group name="mybatis" canBeDeleted="true">
+            <!--模板，name：模板名称(生成的文件名称规则：名称=类名+模板名称,再去除 .ftl后缀) tootPath:根目录(如：resources，java),path:模板生成的文件所要存放的路径,其中${module}的值为table标签module属性对应的值-->
+            <template name="#.java.ftl" rootPath="src.main.java" path="com.tramp.${module}.entity" overwrite="true"/>
+            <template name="Field.java.ftl" rootPath="src.main.java" path="com.tramp.frame.server.base.field" overwrite="true"/>
+            <template name="BaseDao.java.ftl" rootPath="src.main.java" path="com.tramp.frame.server.base.dao" overwrite="true"/>
+            <template name="Enum.java.ftl" rootPath="src.main.java" path="com.tramp.${module}.enums" />
+            <template name="Service.java.ftl" rootPath="src.main.java" path="com.tramp.${module}.service"/>
+            <template name="Dao.java.ftl" rootPath="src.main.java" path="com.tramp.${module}.dao"/>
+            <template name="Mapper.xml.ftl" rootPath="src.main.resources" path="mybatis"/>
+            <template name="BaseMapper.xml.ftl" rootPath="src.main.resources" path="mybatis.base" overwrite="true"/>
+        </group>
+        <group name="tablesToDoc">
+            <template name="WordTables.doc.ftl" absolutePath="/Users/Shared/mycode/autoCoder-maven-plugin/demo/mbg"/>
+        </group>
+    </templates>
+    <info author="autoCoder" remark="autoCoder生成" />
+    <!--目前只支持mysql-->
+    <dataSource dialect="mysql" url="jdbc:mysql://127.0.0.1:3306" db="test" user="root" password="123456" driverClassName="com.mysql.jdbc.Driver"/>
+</generatorConfiguration>

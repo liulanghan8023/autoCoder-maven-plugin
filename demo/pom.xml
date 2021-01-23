@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>autoCoder-maven-plugin</artifactId>
+        <groupId>com.tramp</groupId>
+        <version>1.0.4</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>demo</artifactId>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.tramp</groupId>
+                <artifactId>autoCoder-maven-plugin</artifactId>
+                <version>1.0.4</version>
+                <configuration>
+                    <configPath>${basedir}/mbg/generatorConfig.xml</configPath>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

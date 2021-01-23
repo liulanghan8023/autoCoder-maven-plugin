@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tramp.frame.server.base.dao.AppBaseDao">
+    <resultMap id="baseResultMap" type="com.tramp.basic.entity.App">
+        <id column="id" property="id" />
+        <result column="name" property="name"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    <sql id="baseColumnList">
+    id,name,status,remark,create_time
+    </sql>
+    <select id="get" parameterType="java.lang.String" resultMap="baseResultMap">
+        select <include refid="baseColumnList"/>
+        from ceb_app
+        where id = #{id}
+    </select>
+    <delete id="delete" parameterType="java.util.Collection">
+        delete from ceb_app
+        where 1=1 and id in
+        <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+        #{item}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.tramp.basic.entity.App">
+        insert into ceb_app (
+        id,
+        name,
+        status,
+        remark,
+        create_time
+        )
+        values (
+        #{id, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{status, jdbcType=VARCHAR},
+        #{remark, jdbcType=VARCHAR},
+        #{createTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into ceb_app (id,name,status,remark,create_time
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id, jdbcType=VARCHAR},
+            #{item.name, jdbcType=VARCHAR},
+            #{item.status, jdbcType=VARCHAR},
+            #{item.remark, jdbcType=VARCHAR},
+            #{item.createTime, jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+    <update id="update" parameterType="com.tramp.basic.entity.App">
+        update ceb_app
+        <set>
+            name = #{name, jdbcType=VARCHAR},
+            status = #{status, jdbcType=VARCHAR},
+            remark = #{remark, jdbcType=VARCHAR},
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateSelective" parameterType="com.tramp.basic.entity.App">
+        update ceb_app
+        <set>
+            <if test="name != null">
+                name = #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status, jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark, jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        insert into ceb_app (id,name,status,remark,create_time
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id, jdbcType=VARCHAR},
+            #{item.name, jdbcType=VARCHAR},
+            #{item.status, jdbcType=VARCHAR},
+            #{item.remark, jdbcType=VARCHAR},
+            #{item.createTime, jdbcType=TIMESTAMP}
+            )
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        id = IF(id = VALUES(id),id,NULL)
+            ,name = VALUES(name)
+            ,status = VALUES(status)
+            ,remark = VALUES(remark)
+            ,create_time = VALUES(create_time)
+    </update>
+    <select id="listByEntity" parameterType="com.tramp.basic.entity.App" resultMap="baseResultMap">
+        select <include refid="baseColumnList"/>
+        from ceb_app
+        where 1=1
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                AND create_time = #{createTime}
+            </if>
+    </select>
+    <update id="updateField">
+        update ceb_app
+        <set>
+            <if test="param2.name">
+                name = #{param1.name, jdbcType=VARCHAR},
+            </if>
+            <if test="param2.status">
+                status = #{param1.status, jdbcType=VARCHAR},
+            </if>
+            <if test="param2.remark">
+                remark = #{param1.remark, jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{param1.id}
+    </update>
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tramp.basic.dao.AppDao">
+    <resultMap id="baseResultMap" extends="com.tramp.frame.server.base.dao.AppBaseDao.baseResultMap" type="com.tramp.basic.entity.App"></resultMap>
+    <sql id="baseColumnList">
+        <include refid="com.tramp.frame.server.base.dao.AppBaseDao.baseColumnList" />
+    </sql>
+
+</mapper>
